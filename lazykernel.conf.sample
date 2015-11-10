@@ -8,6 +8,15 @@ CONFIGUREFIRST
 # Sorting by version may fail and 3.3.0-rc2 will be marked as newer than 3.3.0.
 #sort_by='version'
 
+# Allow the use of vesamenu instead of regular test menu. Set to yes to enable vesamenu.
+# You must ensure that the vesamenu.c32 and boot.png files are present under /boot/extlinux
+#vesa_menu=no
+
+# To be used with vesa_menu. Can set the resolution of the menu. By default it is 640x480.
+# If you use a value not supported by your hardware it will revert to text menu.
+#vesa_width=640
+#vesa_height=480
+
 # The name for menu entry.
 menu_entry_name="Gentoo Linux"
 

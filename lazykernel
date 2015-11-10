@@ -109,9 +109,20 @@ gen-extlinuxconf() {
 		echo "# This configuration file was generated automatically by gen-extlinuxconf.
 
 TIMEOUT 30
-UI menu.c32
-
-MENU TITLE Boot Menu
+"
+if [ -z "${vesa_menu}" ]; then vesa_menu='no'; fi
+if [ "${vesa_menu}" = 'no' ]; then
+	echo "UI menu.c32"
+elif [ "${vesa_menu}" = 'yes' ]; then
+	echo "UI vesamenu.c32"
+	if [ -z "${vesa_width}" ] || [ -z "${vesa_height}" ]; then
+		vesa_width='640'
+		vesa_height='480'
+	fi
+	echo "MENU RESOLUTION ${vesa_width} ${vesa_height}
+MENU BACKGROUND boot.png"
+fi
+echo "MENU TITLE Boot Menu
 MENU COLOR title	1;37;40
 MENU COLOR border	30;40
 MENU COLOR unsel	37;40
